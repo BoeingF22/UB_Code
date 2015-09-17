@@ -1,0 +1,128 @@
+// fraction class implementation file
+
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class fraction
+{
+      private:
+         int numerator, denominator;
+      public:
+         fraction ();
+         fraction (int n, int d);
+         void print ();
+         fraction operator+ (fraction f);
+         fraction operator* (fraction f);
+         void operator++ ();
+         bool operator== (fraction f);
+         bool operator> (fraction f);
+         void operator% (int x);
+         friend bool equal3 (fraction f1, fraction f2, fraction f3);
+};
+
+ fraction::fraction ()
+ {
+    numerator = 1;
+    denominator = 1;
+          
+          
+          
+}         
+ 
+ fraction::fraction (int n, int d)
+ {
+    numerator = n;
+    denominator = d;      
+          
+          
+}         
+ 
+ void fraction::print ()
+ {
+      cout << numerator << "/" << denominator << endl;
+      
+      
+      
+}   
+ 
+ fraction fraction::operator+ (fraction f)
+ {
+     fraction temp;
+     
+     temp.numerator = numerator * f.denominator + f.numerator * denominator;
+     temp.denominator = denominator * f.denominator;
+     
+      return temp;
+  
+}         
+ 
+ fraction fraction::operator* (fraction f)
+ {
+     fraction temp;
+     
+     temp.numerator = numerator * f.numerator;
+     temp.denominator = denominator * f.denominator;
+     
+     return temp;         
+ }
+ 
+ 
+ void fraction::operator++ ()
+ {
+    numerator = numerator + denominator;
+  }
+ 
+ bool fraction::operator== (fraction f)
+ {
+      
+      
+      double f_num;
+      double temp_num;
+      
+      f_num = (double)f.numerator/ f.denominator;
+      temp_num = (double)numerator/ denominator;
+      
+      if (f_num ==temp_num)
+      return true;
+      else
+      return false;
+  }
+ 
+ bool fraction::operator> (fraction f)
+ {
+      
+      
+      double f_num;
+      double temp_num;
+      
+      f_num = (double)f.numerator/ f.denominator;
+      temp_num = (double)numerator/ denominator;
+      
+      if (temp_num > f_num)
+      return true;
+      else
+      return false;
+  }
+ 
+ void fraction::operator% (int x)
+ {
+      numerator = numerator * x;
+  }
+ 
+  bool equal3 (fraction f1, fraction f2, fraction f3)
+ {
+       int temp1, temp2, temp3;
+       
+       temp1 = f1.numerator / f1.denominator;
+       temp2 = f2.numerator / f2.denominator;
+       temp3 = f3.numerator / f3.denominator;
+       
+       if(temp1 == temp2 && temp1 == temp3)
+        return true;
+       else
+        return false; 
+        
+            
+    }
