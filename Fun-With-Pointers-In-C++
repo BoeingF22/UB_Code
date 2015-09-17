@@ -1,0 +1,94 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+struct list_node
+{
+       char stuff;
+       list_node* next;
+};
+
+typedef list_node* list_ptr;
+
+void build (list_ptr& front, int nodes, char ch);
+void print (list_ptr front);
+void sub1_skip (list_ptr front);
+void make_Zs (list_ptr front);
+
+int main(int argc, char *argv[])
+{
+    list_ptr front;
+    
+    build (front, 10, 'u');
+    cout << "\nThe list is:\n";
+    print (front);
+    
+    sub1_skip(front);
+    make_Zs(front);
+    cout << "\nThe Final list is:\n";
+    print (front);
+    
+    cout << "\n\n";
+    system("PAUSE");
+    return EXIT_SUCCESS;
+}
+
+void build (list_ptr& front, int nodes, char ch)
+{
+     if (nodes == 0)
+        front = NULL;
+     else
+     {
+         front = new list_node;
+         front -> stuff = ch;
+         build (front -> next, nodes - 1, ch + 1);
+     }
+}
+
+void print (list_ptr front)
+{
+     if (front != NULL)
+     {
+        cout << front -> stuff << " ";
+        print (front -> next);
+     }
+}
+     
+void sub1_skip (list_ptr front)
+{
+     char ch;
+     
+     if(front != NULL)
+     {
+       ch = front -> stuff;   
+       ch = ch - 1;    
+        front -> stuff = ch;
+       front = front -> next -> next;
+       sub1_skip(front);  
+       } 
+            
+ }
+ 
+ void make_Zs (list_ptr front)
+ {
+    if(front != NULL)
+    {
+        if (front -> stuff < 'a' || front -> stuff > 'z')
+            front -> stuff = 'Z';
+            
+        front = front -> next;
+        
+        make_Zs(front);    
+               
+               }
+      
+      
+ 
+ 
+}
+
+
+
+
+
