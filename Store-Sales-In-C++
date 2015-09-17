@@ -1,0 +1,89 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+class sales
+ {
+      private:
+              static const double cd_cost = 3.50;
+              static const double cd_price = 9.50;
+              double cash;
+              int cds;
+              double profit;
+              
+     public:
+            
+            sales();
+            void print();
+            void purchase (int number);
+            void sell (int number);
+            void cashout ();
+            
+            };
+            
+ sales::sales()
+ {
+       cash = 100;
+       cds = 0;
+       profit = 0; 
+        }
+ void sales::print()
+ {
+      cout << "Current Sales Information:" << endl << endl;
+      cout << "    " << "Cash:" << "      $"<< cash << endl;
+      cout << "    " << "CDs:" << "       "<< cds << endl;
+      cout << "    " << "Profit:" << "    $"<< profit << endl << endl;
+      }
+ void sales::purchase (int number)
+ {
+     if (number * cd_cost > cash  )
+      cout << "There is not enough cash to purchase that many CDs!";
+     else
+     { 
+      cout << endl << number << " CDs purchased for $" << number * cd_cost;
+      cds = cds + number;
+      cash = cash - number * cd_cost;
+      profit = profit - number * cd_cost;
+      cout << endl;
+      }
+      
+      }
+ void sales::sell (int number)
+ {
+     
+            if (number > cds  )
+             cout << "There is not enough CDs to sell!";
+            else
+            {
+                cout << endl << number << " CDs sold for $" << number * cd_price;
+                cds = cds - number;
+                cash = cash + number * cd_price;
+                profit = profit + number * cd_price;
+                cout << endl;
+                }
+      }
+ void sales::cashout ()             
+ {
+      int number = 0;
+      double money = cash;
+      
+      while (money >= 0)
+      {
+             if (money >= cd_cost)
+                {
+                money = money - cd_cost;
+                cds++;  
+                number++;    
+               }
+             else
+              break;
+             
+            
+               
+         }
+         profit = profit - number * cd_cost;
+         cout << endl << number  <<"CDs purchased for $" << cash - money << endl << endl;
+         cash = money;   
+ }              
+              
