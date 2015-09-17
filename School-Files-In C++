@@ -1,0 +1,102 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+struct student{
+      string aName;
+       string mjr;
+       float gpa;
+       };
+
+int main()
+{
+   ofstream outData;
+   
+ struct student NewStudent;
+       
+    
+   char choice, New_file;
+   bool pre_mjr_flg;
+   
+   outData.open("z:\\myData.txt",ofstream::app);
+     if(!outData)
+        {
+           cout<<"Can not open file.";
+           return 1;  
+               
+        }
+   
+      cout << "Enter New Student?(y/n): ";
+      cin >> choice;
+      cin.ignore();
+      
+      cout << "Start of New File?(y/n): ";
+      cin >> New_file;
+     
+      if(New_file == 'y' || New_file == 'Y')
+         {    
+         outData << "Name" << '\t' << '\t' << "Major" << '\t' << "GPA" << '\t'
+           << "Pre Major" ;
+         outData << endl;
+          }
+  
+    while(choice == 'y' || choice == 'Y')
+  {  
+     cin.ignore();            
+                  
+    cout << "Please enter the name of the student: ";
+    getline(cin,NewStudent.aName);
+    outData << NewStudent.aName << '\t';
+  
+    cout << "Please enter the major of the student: ";
+    getline(cin,NewStudent.mjr);
+    outData << NewStudent.mjr << '\t';
+  
+    cout << "Please enter the GPA of the student: ";
+    cin >> NewStudent.gpa;
+    outData << (cin,NewStudent.gpa) << '\t';
+  
+    cout << "Is the student a pre-major y/n: ";
+    cin >> choice;
+  
+      if(choice == 'y' || choice == 'Y')
+          {  
+            if(NewStudent.gpa >= 3.0)     
+            {      
+               cout << "The student is a pre-major" << endl;
+               outData << "M" << '\t';
+               pre_mjr_flg = true;
+            }   
+            else 
+            {
+              outData << "P" << '\t';
+              pre_mjr_flg = true;
+            }
+         }  
+      
+      else if(choice == 'n' || choice == 'N')
+        { 
+          outData << 'C' << '\t';
+          pre_mjr_flg = false;  
+        }   
+     
+     else    cout << "Invalid Input" << endl;
+     
+     
+     if(pre_mjr_flg == true)
+     {
+      outData << "Submit to Dean's office" << endl;
+     }  
+     else outData << endl; 
+     
+     
+     cout << "Enter another student?(y/n): ";
+     cin >> choice;
+ }   
+      outData.close();  
+   
+    system("PAUSE");
+    
+    return(0);
+}
